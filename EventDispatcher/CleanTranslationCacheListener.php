@@ -29,7 +29,7 @@ class CleanTranslationCacheListener
     private $cacheDirectory;
 
     /**
-     * @var array
+     * @var LocaleManagerInterface
      */
     private $localeManager;
 
