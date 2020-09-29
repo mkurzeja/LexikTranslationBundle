@@ -2,7 +2,7 @@
 
 namespace Lexik\Bundle\TranslationBundle\EventDispatcher;
 
-use Lexik\Bundle\TranslationBundle\Manager\LocaleManager;
+use Lexik\Bundle\TranslationBundle\Manager\LocaleManagerInterface;
 use Lexik\Bundle\TranslationBundle\Storage\StorageInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -44,10 +44,10 @@ class CleanTranslationCacheListener
      * @param StorageInterface    $storage
      * @param TranslatorInterface $translator
      * @param string              $cacheDirectory
-     * @param LocaleManager       $localeManager
+     * @param LocaleManagerInterface       $localeManager
      * @param int                 $cacheInterval
      */
-    public function __construct(StorageInterface $storage, TranslatorInterface $translator, $cacheDirectory, LocaleManager $localeManager, $cacheInterval)
+    public function __construct(StorageInterface $storage, TranslatorInterface $translator, $cacheDirectory, LocaleManagerInterface $localeManager, $cacheInterval)
     {
         $this->storage = $storage;
         $this->cacheDirectory = $cacheDirectory;
@@ -98,7 +98,7 @@ class CleanTranslationCacheListener
         }
         if (!\is_dir($cache_dir)) {
             \mkdir($cache_dir);
-        }        
+        }
         if (!\file_exists($cache_file)) {
             \touch($cache_file);
             return true;
